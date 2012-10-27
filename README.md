@@ -1,7 +1,7 @@
 crazy-baboon
 ============
 
-A dummy project to quickly test Baboon project.
+A dummy project to quickly test Baboon project (the tool to detect source code merge conflicts in realtime).
 
 http://baboon-project.org
 
