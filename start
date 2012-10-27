@@ -1,18 +1,29 @@
 #!/usr/bin/env python
 
-import os
 import pkgutil
 import random
 import time
 
+from os.path import dirname, join
+
 import dummy
+
+
+def get_dummy_path():
+    return dirname(dummy.__file__)
+
+def get_dummy_modules():
+    dummy_path = join(dirname(__file__), 'dummy')
+    return [name for _, name, _ in pkgutil.iter_modules([dummy_path])]
+
 
 
 def init_restore():
 
     contents = {}
-    for module in [name for _, name, _ in pkgutil.iter_modules(['dummy'])]:
-        with open(os.path.join('dummy', '%s.py' % module)) as fd:
+    dummy_path = join(dirname(__file__), 'dummy')
+    for module in get_dummy_modules():
+        with open(join(get_dummy_path(), '%s.py' % module)) as fd:
             contents.update({module: '\n'.join(fd.readlines())})
 
     return contents
@@ -21,18 +32,17 @@ def init_restore():
 def restore(contents):
 
    for module, content in contents.iteritems():
-        with open(os.path.join('dummy', '%s.py' % module), 'w') as fd:
+        with open(join(get_dummy_path(), '%s.py' % module), 'w') as fd:
             fd.write(content)
 
 
 def random_change():
 
     try:
-        modules = [name for _, name, _ in pkgutil.iter_modules(['dummy'])]
-        cur_mod = random.choice(modules)
+        cur_mod = random.choice(get_dummy_modules())
 
         lines = []
-        with open(os.path.join('dummy', '%s.py' % cur_mod), 'r+') as fd:
+        with open(join(get_dummy_path(), '%s.py' % cur_mod), 'r+') as fd:
             lines = fd.readlines()
 
             index_line = random.randint(0, len(lines) - 1)
@@ -50,7 +60,7 @@ def main():
     print("If you correctly have installed Baboon, you will receive realtime "
           "merge conflicts alerts.")
 
-    sleeptime = 6
+    sleeptime = 1
 
     try:
         contents = init_restore()
