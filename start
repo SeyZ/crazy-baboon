@@ -5,6 +5,8 @@ import pkgutil
 import random
 import time
 
+import dummy
+
 
 def init_restore():
 
