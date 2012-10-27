@@ -3,6 +3,9 @@ crazy-baboon
 
 A dummy project to quickly test Baboon project.
 
+http://baboon-project.org
+http://github.com/SeyZ/baboon
+
 Start Baboon
 ============
 
