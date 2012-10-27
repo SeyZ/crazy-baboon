@@ -60,7 +60,7 @@ def main():
     print("If you correctly have installed Baboon, you will receive realtime "
           "merge conflicts alerts.")
 
-    sleeptime = 1
+    sleeptime = 6
 
     try:
         contents = init_restore()
