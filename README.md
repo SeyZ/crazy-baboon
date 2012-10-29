@@ -24,7 +24,7 @@ Start the demo
 ==============
 
 ```
-python2 ~/crazy-baboon/start
+python ~/crazy-baboon/start
 ```
 
 You are ready. Wait and watch...
